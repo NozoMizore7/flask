@@ -12,3 +12,5 @@ build/
 .idea/
 *.swp
 *~
+/hello.py
+/startup_first_time.cmd
