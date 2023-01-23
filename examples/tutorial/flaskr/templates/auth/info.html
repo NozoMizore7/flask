@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Customer info{% endblock %}</h1>
+  <ul><a href="{{ url_for('index') }}" class="inline-block">back</a></ul>
+{% endblock %}
+
+{% block content %}
+<div>username: {{ g.user['username'] }}</div>
+<div><div>contact name: {{ g.user['contact_name'] if g.user['contact_name'] else "N/A" }}</div>
+  <div>email: {{ g.user['email'] if g.user['email'] else "N/A" }}</div></div>
+<div><div>address1: {{ g.user['address1'] if g.user['address1'] else "N/A" }}</div>
+  <div>address2: {{ g.user['address2'] if g.user['address2'] else "N/A" }}</div></div>
+<div><div>city: {{ g.user['city'] if g.user['city'] else "N/A" }}</div>
+  <div>state: {{ g.user['state'] if g.user['state'] else "N/A" }}</div>
+  <div>postal code: {{ g.user['postal_code'] if g.user['postal_code'] else "N/A" }}</div></div>
+  <form method="post" action="{{ url_for('auth.info',form_id=1) }}">
+    <label for="old_password">Old Password</label>
+    <input type="password" name="old_password" id="old_password" required>
+    <label for="new_password">New Password</label>
+    <input type="password" name="new_password" id="new_password" required>
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" name="confirm_password" id="confirm_password" required>
+    <input type="submit" value="Set password" name = "submit">
+  </form>
+  <div><span><form method="post" action="{{ url_for('auth.info',form_id=2) }}">
+    <label for="contact_name">Contact name</label>
+    <input type="text" name="contact_name" id="contact_name" value = "{{ g.user['contact_name'] if g.user['contact_name'] else '' }}" >
+    <input type="submit" value="Set contact name" name = "submit">
+  </form></span>
+  <span><form method="post" action="{{ url_for('auth.info',form_id=3) }}">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" value = "{{ g.user['email'] if g.user['email'] else '' }}">
+    <input type="submit" value="Set email" name = "submit">
+  </form></span></div>
+  <form method="post" action="{{ url_for('auth.info',form_id=4) }}">
+    <div><span><label for="address1">Address1</label>
+      <input name="address1" id="address1" value = "{{ g.user['address1'] if g.user['address1'] else '' }}" ></span>
+    <span><label for="address2">Address2</label>
+      <input name="address2" id="address2" value = "{{ g.user['address2'] if g.user['address2'] else '' }}" ></span></div>
+    <div><span><label for="city">City</label>
+    <input name="city" id="city" value = "{{ g.user['city'] if g.user['city'] else '' }}" ></span>
+    <span><label for="state">State</label>
+      <input name="state" id="state" value = "{{ g.user['state'] if g.user['state'] else '' }}" ></span>
+    <span><label for="postal_code">Postal code</label>
+      <input name="postal_code" id="postal_code" value = "{{ g.user['postal_code'] if g.user['postal_code'] else '' }}" ></span></div>
+    <input type="submit" value="Set address" name = "submit">
+  </form>
+{% endblock %}

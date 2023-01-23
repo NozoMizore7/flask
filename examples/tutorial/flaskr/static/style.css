@@ -132,3 +132,7 @@ input[type=submit] {
   align-self: start;
   min-width: 10em;
 }
+
+.inline-block {
+      display: inline-block;
+}
